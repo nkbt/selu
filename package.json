@@ -1,0 +1,29 @@
+{
+	"name": "selu",
+	"version": "0.0.0",
+	"description": "Test",
+	"main": "app.js",
+	"scripts": {
+		"start": "node app",
+		"test": "grunt test"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/nkbt/selu.git"
+	},
+	"keywords": [
+		"selu",
+		"test"
+	],
+	"author": "Nik Butenko <nik@butenko.me> (http://butenko.me/)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/nkbt/selu/issues"
+	},
+	"dependencies": {
+		"passport-local": "~1.0.0",
+		"passport": "~0.2.0",
+		"mongoose": "~3.8.9",
+		"restify": "~2.7.0"
+	}
+}
