@@ -14,7 +14,7 @@ exports.get = function (req, res, callback) {
 
 		res.json({user: currentUser});
 		return callback();
-	})
+	});
 };
 
 
@@ -50,13 +50,23 @@ exports.follow = function (req, res, callback) {
 		updateCurrentUser: [
 			'validCurrentUser', 'validUser', function (next, results) {
 				results.validCurrentUser.followees.addToSet(results.validUser.email);
-				return results.validCurrentUser.save(next);
+				return results.validCurrentUser.save(function (error, updatedUser) {
+					if (error) {
+						return next(error);
+					}
+					return next(null, updatedUser);
+				});
 			}
 		],
 		updateUser: [
 			'validCurrentUser', 'validUser', function (next, results) {
 				results.validUser.followers.addToSet(results.validCurrentUser.email);
-				return results.validUser.save(next);
+				return results.validUser.save(function (error, updatedUser) {
+					if (error) {
+						return next(error);
+					}
+					return next(null, updatedUser);
+				});
 			}
 		]
 	}, function (error, results) {
